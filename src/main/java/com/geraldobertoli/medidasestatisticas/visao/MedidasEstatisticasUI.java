@@ -98,11 +98,11 @@ public class MedidasEstatisticasUI{
 		miNovaAmostra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(cadAmostra == null){
-					cadAmostra = new CadAmostraUI();
+					cadAmostra = new CadAmostraUI(tableModel);
 					cadAmostra.setLocationRelativeTo(janela);
 				}else{
 					cadAmostra.dispose();
-					cadAmostra = new CadAmostraUI();
+					cadAmostra = new CadAmostraUI(tableModel);
 				}
 				cadAmostra.setVisible(true);
 			}
@@ -115,11 +115,11 @@ public class MedidasEstatisticasUI{
 				//Mesma coisa que a opção NOVA, porém passando a amostra selecionada
 				if(tabela.getSelectedRow() != -1){
 					if(cadAmostra == null){
-						cadAmostra = new CadAmostraUI(tableModel.getAmostra(tabela.getSelectedRow()));
+						cadAmostra = new CadAmostraUI(tableModel, tableModel.getAmostra(tabela.getSelectedRow()));
 						cadAmostra.setLocationRelativeTo(janela);
 					}else{
 						cadAmostra.dispose();
-						cadAmostra = new CadAmostraUI(tableModel.getAmostra(tabela.getSelectedRow()));
+						cadAmostra = new CadAmostraUI(tableModel, tableModel.getAmostra(tabela.getSelectedRow()));
 						//tableModel.getAmostra(tabela.getSelectedRow())
 						//cadAmostra.setExtendedState(JFrame.NORMAL);  
 					    //cadAmostra.toFront();

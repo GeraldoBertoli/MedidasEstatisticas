@@ -43,14 +43,18 @@ public class CadAmostraUI extends JFrame{
 	
 	private Amostra amostra;
 	private CadAmostraTableModel modelo;
+	private AmostrasTableModel tableModel;
 	
-	public CadAmostraUI(){
+	public CadAmostraUI(AmostrasTableModel medidasTableModel){
+		this.tableModel = medidasTableModel;
 		montaTela();
 	}
 	
-	public CadAmostraUI(Amostra amostra){
+	public CadAmostraUI(AmostrasTableModel medidasTableModel, Amostra amostra){
 		this.amostra = amostra;
 		this.txtDescricao = new JTextField(this.amostra.getDescricao());
+
+		this.tableModel = medidasTableModel;
 		
 		montaTela();
 	}
@@ -213,6 +217,7 @@ public class CadAmostraUI extends JFrame{
 				for(int i = 0; i < Integer.parseInt(txtFreq.getText()); i++){
 					modelo.addValue(Double.parseDouble(txtValor.getText()));
 					controleCadAmostra.atualizaAmostra(amostra);
+					tableModel.fireTableDataChanged();
 				}
 			}catch(Exception e){
 				e.printStackTrace();
@@ -256,10 +261,9 @@ public class CadAmostraUI extends JFrame{
 			public void mouseClicked(MouseEvent arg0) {
 				int row = tabela.rowAtPoint(arg0.getPoint());
 				if(arg0.getClickCount() == 2){
-					//TODO remover elemento da amostra
-					//quando for clicada duas vezes
 					((CadAmostraTableModel)tabela.getModel()).removeValor(row);
 					txtValor.requestFocus();
+					tableModel.fireTableDataChanged();
 				}
 			}
 
