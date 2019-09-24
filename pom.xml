@@ -5,10 +5,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.geraldobertoli.medidasestatisticas</groupId>
-  <artifactId>medidas-estatisticas</artifactId>
+  <artifactId>MedidasEstatisticas</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>medidas-estatisticas</name>
+  <name>MedidasEstatisticas</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -77,12 +77,6 @@
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.1</version>
         </plugin>
       </plugins>
     </pluginManagement>

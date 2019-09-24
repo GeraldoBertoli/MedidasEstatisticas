@@ -8,13 +8,6 @@ import com.geraldobertoli.medidasestatisticas.entidade.Amostra;
 public class AmostrasModelo {
 	private static List<Amostra> amostras = new ArrayList<Amostra>();
 	private static AmostrasTableModel modeloAmostras = new AmostrasTableModel();
-
-	/*
-	public AmostrasModelo(){
-		amostras = new ArrayList<Amostra>();
-		modeloAmostras = new AmostrasTableModel();
-	}
-	*/
 	
 	public static void addAmostra(Amostra amostra){
 		amostras.add(amostra);
@@ -31,11 +24,6 @@ public class AmostrasModelo {
 		}
 		
 		modeloAmostras.addAmostra(amostra);
-		
-		//modeloAmostras.atualizaModelo(amostras);
-		
-		//modeloAmostras.atualizaModelo(amostras);
-		//MedidasEstatisticasUI.pesquisar(new AmostrasTableModel(amostras));
 	}
 	
 	public static void removeAmostra(Amostra amostra){
