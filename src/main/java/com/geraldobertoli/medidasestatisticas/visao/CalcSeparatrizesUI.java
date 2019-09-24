@@ -12,6 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.geraldobertoli.medidasestatisticas.entidade.Amostra;
+import com.geraldobertoli.medidasestatisticas.controle.ControleCalcSeparatrizes;
+
 @SuppressWarnings("serial")
 public class CalcSeparatrizesUI extends JFrame{
 	private JPanel painelPrincipal;
@@ -20,12 +23,17 @@ public class CalcSeparatrizesUI extends JFrame{
 	private JComboBox cbPosicao;
 	
 	private JTextField txtValor;
+
+	private Amostra amostra;
 	
-	public CalcSeparatrizesUI(){
+	public CalcSeparatrizesUI(Amostra amostra){
 		preparaJanela();
 		preparaComponentes();
 		montaJanela();
 		
+		cbMedida.setSelectedIndex(0);
+		cbPosicao.setSelectedIndex(-1);
+		this.amostra = amostra;
 	}
 	
 	private void preparaJanela() {
@@ -46,7 +54,6 @@ public class CalcSeparatrizesUI extends JFrame{
 		txtValor.setEnabled(false);
 		
 		cbMedida.addItem(new String("Quartil"));
-		
 		cbMedida.addItem(new String("Decil"));
 		cbMedida.addItem(new String("Percentil"));
 		
@@ -54,32 +61,33 @@ public class CalcSeparatrizesUI extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				switch(cbMedida.getSelectedIndex()){
 				case 0:
+					cbPosicao.removeAllItems();
 					cbPosicao.addItem(new String("1"));
 					cbPosicao.addItem(new String("2"));
 					cbPosicao.addItem(new String("3"));
 					break;
 				case 1:
+					cbPosicao.removeAllItems();
 					for(int i = 0; i < 9; i++){
 						cbPosicao.addItem(new String(""+(i+1)));
 					}
 					break;
 				case 2:
+					cbPosicao.removeAllItems();
 					for(int i = 0; i < 99; i++){
 						cbPosicao.addItem(new String(""+(i+1)));
 					}
 					break;
 				}
-				
-				cbPosicao.setSelectedIndex(0);
+				//cbPosicao.setSelectedIndex(0);
 			}
 		});
 		
 		cbPosicao.addActionListener (new ActionListener () {
 			public void actionPerformed(ActionEvent e) {
-				if(((String)cbMedida.getSelectedItem()).equalsIgnoreCase("Quartil")){
-					if(((String)cbMedida.getSelectedItem()).equalsIgnoreCase("1")){
-						txtValor.setText("Teste");
-					}
+				if (amostra != null)
+				{
+					txtValor.setText("" + new ControleCalcSeparatrizes().calcSeparatrizes(amostra, cbMedida.getSelectedIndex(), cbPosicao.getSelectedIndex()));
 				}
 			}
 		});

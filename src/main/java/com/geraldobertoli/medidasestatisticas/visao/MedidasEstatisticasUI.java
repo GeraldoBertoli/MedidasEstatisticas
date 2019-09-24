@@ -146,15 +146,18 @@ public class MedidasEstatisticasUI{
 		miCalcSeparatriz.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(tabela.getSelectedRow() != -1){
+					calcSeparatrizes = new CalcSeparatrizesUI(tableModel.getAmostra(tabela.getSelectedRow()));
+					calcSeparatrizes.setLocationRelativeTo(janela);
+					/*
 					if(calcSeparatrizes == null){
-						calcSeparatrizes = new CalcSeparatrizesUI();
+						calcSeparatrizes = new CalcSeparatrizesUI(tableModel.getAmostra(tabela.getSelectedRow()));
 						calcSeparatrizes.setLocationRelativeTo(janela);
 						
 					}else{
 						calcSeparatrizes.setExtendedState(JFrame.NORMAL);  
 						calcSeparatrizes.toFront();
 
-					}
+					} */
 					calcSeparatrizes.setVisible(true);
 				}
 			}
