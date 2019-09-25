@@ -345,6 +345,53 @@ public class MedidasEstatisticasUI{
 
 		});
 
+		tabela.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent lse) {
+				int row = tabela.getSelectedRow();
+				if (row != -1)
+				{
+					try
+					{
+						txtMAritmetica.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcMediaAritmetica(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcMediaAritmetica(tableModel.getAmostra(row))));
+						txtMGeometrica.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcMediaGeometrica(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcMediaGeometrica(tableModel.getAmostra(row))));
+						txtMHarmonica.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcMediaHarmonica(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcMediaHarmonica(tableModel.getAmostra(row))));
+						txtModa.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcModa(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcModa(tableModel.getAmostra(row))));
+						txtMediana.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcMediana(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcMediana(tableModel.getAmostra(row))));
+						txtVariancia.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcVariancia(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcVariancia(tableModel.getAmostra(row))));
+						txtDPadrao.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcDesvPadrao(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcDesvPadrao(tableModel.getAmostra(row))));
+						txtCVariacao.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcCV(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcCV(tableModel.getAmostra(row))));
+						txtEPX.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcEPX(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcEPX(tableModel.getAmostra(row))));
+						txtAT.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcAT(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcAT(tableModel.getAmostra(row))));
+					}catch(Exception e)
+					{
+						txtMAritmetica.setText("0");
+						txtMGeometrica.setText("0");
+						txtMHarmonica.setText("0");
+						txtModa.setText("0");
+						txtMediana.setText("0");
+						txtVariancia.setText("0");
+						txtDPadrao.setText("0");
+						txtCVariacao.setText("0");
+						txtEPX.setText("0");
+						txtAT.setText("0");
+					}
+				} else
+				{
+					txtMAritmetica.setText("0");
+					txtMGeometrica.setText("0");
+					txtMHarmonica.setText("0");
+					txtModa.setText("0");
+					txtMediana.setText("0");
+					txtVariancia.setText("0");
+					txtDPadrao.setText("0");
+					txtCVariacao.setText("0");
+					txtEPX.setText("0");
+					txtAT.setText("0");
+				}
+			}
+	  
+		});
+
 		JScrollPane scroll = new JScrollPane(); 
 		scroll.setSize(new Dimension(640, 320));
 		scroll.getViewport().setBorder(null);
