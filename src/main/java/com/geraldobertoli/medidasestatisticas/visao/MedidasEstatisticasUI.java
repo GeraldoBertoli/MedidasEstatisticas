@@ -21,9 +21,13 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+//import javax.swing.event.TableModelEvent;
+//import javax.swing.event.TableModelListener;
+import javax.swing.event.TableModelListener;
 
 import com.geraldobertoli.medidasestatisticas.controle.ControleMedidasEstatisticas;
-import com.geraldobertoli.medidasestatisticas.entidade.Amostra;
+//import com.geraldobertoli.medidasestatisticas.entidade.Amostra;
 import com.geraldobertoli.medidasestatisticas.modelo.AmostrasTableModel;
 
 import javax.swing.JMenuItem;
@@ -287,16 +291,31 @@ public class MedidasEstatisticasUI{
 			public void mouseClicked(MouseEvent arg0) {
 				int row = tabela.rowAtPoint(arg0.getPoint());
 				
-				txtMAritmetica.setText(String.valueOf(controleMedidasEstatisticas.calcMediaAritmetica(tableModel.getAmostra(row))));
-				txtMGeometrica.setText(String.valueOf(controleMedidasEstatisticas.calcMediaGeometrica(tableModel.getAmostra(row))));
-				txtMHarmonica.setText(String.valueOf(controleMedidasEstatisticas.calcMediaHarmonica(tableModel.getAmostra(row))));
-				txtModa.setText(String.valueOf(controleMedidasEstatisticas.calcModa(tableModel.getAmostra(row))));
-				txtMediana.setText(String.valueOf(controleMedidasEstatisticas.calcMediana(tableModel.getAmostra(row))));
-				txtVariancia.setText(String.valueOf(controleMedidasEstatisticas.calcVariancia(tableModel.getAmostra(row))));
-				txtDPadrao.setText(String.valueOf(controleMedidasEstatisticas.calcDesvPadrao(tableModel.getAmostra(row))));
-				txtCVariacao.setText(String.valueOf(controleMedidasEstatisticas.calcCV(tableModel.getAmostra(row))));
-				txtEPX.setText(String.valueOf(controleMedidasEstatisticas.calcEPX(tableModel.getAmostra(row))));
-				txtAT.setText(String.valueOf(controleMedidasEstatisticas.calcAT(tableModel.getAmostra(row))));
+				try
+				{
+					txtMAritmetica.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcMediaAritmetica(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcMediaAritmetica(tableModel.getAmostra(row))));
+					txtMGeometrica.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcMediaGeometrica(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcMediaGeometrica(tableModel.getAmostra(row))));
+					txtMHarmonica.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcMediaHarmonica(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcMediaHarmonica(tableModel.getAmostra(row))));
+					txtModa.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcModa(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcModa(tableModel.getAmostra(row))));
+					txtMediana.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcMediana(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcMediana(tableModel.getAmostra(row))));
+					txtVariancia.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcVariancia(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcVariancia(tableModel.getAmostra(row))));
+					txtDPadrao.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcDesvPadrao(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcDesvPadrao(tableModel.getAmostra(row))));
+					txtCVariacao.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcCV(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcCV(tableModel.getAmostra(row))));
+					txtEPX.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcEPX(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcEPX(tableModel.getAmostra(row))));
+					txtAT.setText(String.valueOf(Double.isNaN(controleMedidasEstatisticas.calcAT(tableModel.getAmostra(row)))?0:controleMedidasEstatisticas.calcAT(tableModel.getAmostra(row))));
+				}catch(Exception e)
+				{
+					txtMAritmetica.setText("0");
+					txtMGeometrica.setText("0");
+					txtMHarmonica.setText("0");
+					txtModa.setText("0");
+					txtMediana.setText("0");
+					txtVariancia.setText("0");
+					txtDPadrao.setText("0");
+					txtCVariacao.setText("0");
+					txtEPX.setText("0");
+					txtAT.setText("0");
+				}
 				
 			}
 
@@ -325,7 +344,7 @@ public class MedidasEstatisticasUI{
 			}
 
 		});
-				
+
 		JScrollPane scroll = new JScrollPane(); 
 		scroll.setSize(new Dimension(640, 320));
 		scroll.getViewport().setBorder(null);
