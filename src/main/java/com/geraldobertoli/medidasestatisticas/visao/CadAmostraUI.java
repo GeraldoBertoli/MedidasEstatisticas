@@ -141,11 +141,13 @@ public class CadAmostraUI extends JFrame{
 		//Eventos
 		
 		txtDescricao.addKeyListener(new KeyAdapter(){
-			public void keyPressed(KeyEvent arg0) {
+			public void keyReleased(KeyEvent arg0) {
 				
 				amostra.setDescricao(txtDescricao.getText());
 				controleCadAmostra.atualizaAmostra(amostra);
 				
+				tableModel.fireTableDataChanged();
+
 				if(arg0.getKeyCode() == KeyEvent.VK_ENTER){
 					txtValor.requestFocus();
 					txtValor.selectAll();
