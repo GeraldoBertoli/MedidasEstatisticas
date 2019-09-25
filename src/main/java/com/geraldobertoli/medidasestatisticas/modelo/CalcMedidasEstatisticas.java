@@ -4,8 +4,8 @@ import java.util.Collections;
 import java.util.List;
 
 import com.geraldobertoli.medidasestatisticas.entidade.Amostra;
-//import com.geraldobertoli.medidasestatisticas.modelo.AmostrasModelo;
-//import com.geraldobertoli.medidasestatisticas.modelo.AmostrasTableModel;
+import com.geraldobertoli.medidasestatisticas.modelo.AmostrasModelo;
+import com.geraldobertoli.medidasestatisticas.modelo.AmostrasTableModel;
 
 public class CalcMedidasEstatisticas {
 	
@@ -107,9 +107,9 @@ public class CalcMedidasEstatisticas {
 			variancia += (Math.pow((valores.get(i)-media), 2));
 		}
 		
-		variancia /= valores.size()-1.0;
+		//variancia = variancia / (valores.size() - 1);
 		
-		return variancia;
+		return (variancia/(valores.size() - 1));
 	}
 
 	public double calcDesvPadrao(Amostra amostra){
@@ -117,7 +117,7 @@ public class CalcMedidasEstatisticas {
 	}
 
 	public double calcCV(Amostra amostra){
-		return calcDesvPadrao(amostra)/calcMediaAritmetica(amostra)*100;
+		return (100 * calcDesvPadrao(amostra) / calcMediaAritmetica(amostra));
 	}
 
 	public double calcEPX(Amostra amostra){
