@@ -142,12 +142,6 @@ public class CadAmostraUI extends JFrame{
 		
 		txtDescricao.addKeyListener(new KeyAdapter(){
 			public void keyReleased(KeyEvent arg0) {
-				
-				amostra.setDescricao(txtDescricao.getText());
-				controleCadAmostra.atualizaAmostra(amostra);
-				
-				tableModel.fireTableDataChanged();
-
 				if(arg0.getKeyCode() == KeyEvent.VK_ENTER){
 					txtValor.requestFocus();
 					txtValor.selectAll();
@@ -218,6 +212,7 @@ public class CadAmostraUI extends JFrame{
 			try{
 				for(int i = 0; i < Integer.parseInt(txtFreq.getText()); i++){
 					modelo.addValue(Double.parseDouble(txtValor.getText()));
+					amostra.setDescricao(txtDescricao.getText()); //Bugfix-iss4
 					controleCadAmostra.atualizaAmostra(amostra);
 					tableModel.fireTableDataChanged();
 				}
